@@ -10,13 +10,6 @@ if len(sys.argv) == 0:
 inputDir = sys.argv[1]
 outputDir = sys.argv[2]
 
-if not os.path.exists(inputDir):
-    print("Input Directory not available")
-    exit(1)
-
-if not os.path.exists(outputDir):
-    os.makedirs(outputDir)
-
 size = 300, 300
 
 def toNPImage(data):
