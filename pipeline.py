@@ -60,9 +60,9 @@ def transformAndSave(key, img):
         im = im.resize(size, Image.ANTIALIAS)
         im.save(path)
         midDir = 'training'
-        if currentNumFiles * 100/totalInClass >= 70:
+        if currentNumFiles * 100/totalInClass >= 90:
             midDir = 'testing'
-        elif currentNumFiles * 100/totalInClass >= 90:
+        elif currentNumFiles * 100/totalInClass >= 70:
             midDir = 'validation'
         put = Popen(["hadoop", "fs", "-put" , path, outputDir + '/' + classname + '/' + midDir + '/'])
         put.communicate()
