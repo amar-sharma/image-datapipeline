@@ -34,7 +34,6 @@ def transformAndSave(key, img):
         directory = rootDir + '/' + classname
         if not os.path.exists(directory):
             os.makedirs(directory)
-        print(len(os.listdir(directory)))
         path = directory + '/' + key.split("/")[-1]
         im = Image.fromarray(img)
         im = im.resize(size, Image.ANTIALIAS)
@@ -49,6 +48,5 @@ conf = (SparkConf()
          .set('spark.driver.memory','15g'))
 sc = SparkContext(conf = conf)
 
-images = sc.binaryFiles(inputDir + '/Bear')
-count_of_all = images.count()
+images = sc.binaryFiles(inputDir+'/*')
 imagerdd = images.map(lambda (x, y): (x,transformAndSave(x, y))).collect()
